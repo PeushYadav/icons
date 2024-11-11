@@ -1,5 +1,5 @@
 const icons = [
-    'fa-glass', 'fa-music', 'fa-search', 'fa-envelope-o', 'fa-heart', 'fa-star', 'fa-star-o', 
+            'fa-glass', 'fa-music', 'fa-search', 'fa-envelope-o', 'fa-heart', 'fa-star', 'fa-star-o', 
             'fa-user', 'fa-film', 'fa-th-large', 'fa-th', 'fa-th-list', 'fa-check', 'fa-remove', 'fa-close', 
             'fa-times', 'fa-search-plus', 'fa-search-minus', 'fa-power-off', 'fa-signal', 'fa-cog', 'fa-trash-o', 
             'fa-home', 'fa-file-o', 'fa-clock-o', 'fa-road', 'fa-download', 'fa-arrow-circle-o-down', 
@@ -63,39 +63,39 @@ const icons = [
         
     ];
 
-    // Function to display icons based on search
-    function displayIcons(filter = "") {
-        const iconContainer = document.getElementById("iconContainer");
-        iconContainer.innerHTML = ""; // Clear existing icons
-        
-        icons.forEach(   => {
-            if (icon.includes(filter)) {
-                const iconBox = document.createElement("div");
-                iconBox.className = "icon-box";
-                
-                iconBox.innerHTML = `
-                    <i class="fa ${icon} icon"></i>
-                    <div class="icon-name">${icon.replace('fa-', '').replace('-', ' ')}</div>
-                    <button class="copy-button" onclick="copyCode('<i class=&quot;fa ${icon}&quot;></i>')">Copy</button>
-                `;
-                
-                iconContainer.appendChild(iconBox);
-            }
-        });
-    }
+   // Function to display icons based on search
+function displayIcons(filter = "") {
+    const iconContainer = document.getElementById("iconContainer");
+    iconContainer.innerHTML = ""; // Clear existing icons
 
-    // Copy to clipboard function
-    function copyCode(code) {
-        navigator.clipboard.writeText(code).then(() => {
-            alert("Code copied: " + code);
-        });
-    }
-
-    // Event listener for the search input
-    document.getElementById("searchInput").addEventListener("input", function() {
-        const searchValue = this.value.toLowerCase();
-        displayIcons(searchValue);
+    icons.forEach(icon => {
+        if (icon.includes(filter)) {
+            const iconBox = document.createElement("div");
+            iconBox.className = "icon-box";
+            
+            iconBox.innerHTML = `
+                <i class="fa ${icon} icon"></i>
+                <div class="icon-name">${icon.replace('fa-', '').replace('-', ' ')}</div>
+                <button class="copy-button" onclick="copyCode('<i class=&quot;fa ${icon}&quot;></i>')">Copy</button>
+            `;
+            
+            iconContainer.appendChild(iconBox);
+        }
     });
+}
 
-    // Initial display of all icons
-    displayIcons();
+// Copy to clipboard function
+function copyCode(code) {
+    navigator.clipboard.writeText(code).then(() => {
+        alert("Code copied: " + code);
+    });
+}
+
+// Event listener for the search input
+document.getElementById("searchInput").addEventListener("input", function() {
+    const searchValue = this.value.toLowerCase();
+    displayIcons(searchValue);
+});
+
+// Initial display of all icons
+displayIcons();
